@@ -5,11 +5,11 @@
 }
 
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --background-color: #1a1a1a;
-    --text-color: #ffffff;
-    --accent-color: #ffd700;
+    --primary-color: #0066cc;
+    --secondary-color: #4c9aff;
+    --background-color: #e6f3ff;
+    --text-color: #003366;
+    --accent-color: #1e90ff;
 }
 
 body {
@@ -25,12 +25,13 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 102, 204, 0.95);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 102, 204, 0.2);
 }
 
 .logo h1 {
@@ -58,7 +59,7 @@ body {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background: linear-gradient(rgba(0, 102, 204, 0.3), rgba(230, 243, 255, 0.7)),
                 url('../images/bhop-bg.jpg');
     background-size: cover;
     background-position: center;
@@ -122,10 +123,11 @@ body {
 .feature {
     text-align: center;
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     transition: transform 0.3s ease;
     animation: fadeIn 0.6s ease forwards;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.1);
 }
 
 .feature:hover {
@@ -206,8 +208,9 @@ body {
 
 /* Footer */
 footer {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 102, 204, 0.95);
     padding: 3rem 5% 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 102, 204, 0.2);
 }
 
 .footer-content {
@@ -219,21 +222,6 @@ footer {
 .footer-info h3 {
     color: var(--accent-color);
     margin-bottom: 1rem;
-}
-
-.footer-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.footer-links a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: var(--accent-color);
 }
 
 .footer-bottom {
