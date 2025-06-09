@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Language selector functionality
+    const languageSelect = document.getElementById('languageSelect');
+    let currentLang = localStorage.getItem('language') || 'pt';
+    languageSelect.value = currentLang;
+
+    function updateLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-lang]').forEach(element => {
+            const key = element.getAttribute('data-lang');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+        localStorage.setItem('language', lang);
+    }
+
+    languageSelect.addEventListener('change', (e) => {
+        updateLanguage(e.target.value);
+    });
+
+    // Initialize with saved language
+    updateLanguage(currentLang);
+
     // Navbar hamburger menu
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -41,9 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             player: 'BunnyMaster',
             time: '02:10.789'
         }
-    ];
-
-    // Populate records
+    ];    // Populate records
     const recordsContainer = document.querySelector('.records-container');
     if (recordsContainer) {
         sampleRecords.forEach(record => {
@@ -52,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
             recordElement.innerHTML = `
                 <div class="record-card">
                     <h3>${record.map}</h3>
-                    <p><strong>Player:</strong> ${record.player}</p>
-                    <p><strong>Time:</strong> ${record.time}</p>
+                    <p><strong data-lang="player">Player</strong>: ${record.player}</p>
+                    <p><strong data-lang="time">Time</strong>: ${record.time}</p>
                 </div>
             `;
             recordsContainer.appendChild(recordElement);
@@ -62,14 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Copy server IP when clicking connect button
     const connectBtn = document.querySelector('.connect-btn');
-    const serverIP = 'connect bhop.servidor.com';
-
-    connectBtn.addEventListener('click', () => {
+    const serverIP = 'connect bhop.servidor.com';    connectBtn.addEventListener('click', () => {
         navigator.clipboard.writeText(serverIP).then(() => {
             const originalText = connectBtn.textContent;
-            connectBtn.textContent = 'IP Copiado!';
+            connectBtn.textContent = translations[currentLang].copiedIp;
             setTimeout(() => {
-                connectBtn.textContent = originalText;
+                connectBtn.textContent = translations[currentLang].connect;
             }, 2000);
         }).catch(err => {
             console.error('Failed to copy:', err);
